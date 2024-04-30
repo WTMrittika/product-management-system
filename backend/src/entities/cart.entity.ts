@@ -1,12 +1,12 @@
 import {BeforeInsert, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity('cart')
-export class Cart {
+@Entity('addTocart')
+export class addToCart {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({nullable: false})
+  @Column({ unique: true })
   product_name: string;
 
   @Column({ nullable: false })

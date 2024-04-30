@@ -1,34 +1,33 @@
-
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Cart } from 'src/entities/cart.entity';
+import { addToCart } from 'src/entities/cart.entity';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
 
 @Injectable()
 export class CartService {
   constructor(
-    @InjectRepository(Cart)
-    private readonly cartRepository: Repository<Cart>,
+    @InjectRepository(addToCart)
+    private readonly cartRepository: Repository<addToCart>,
   ) {}
 
-  async create(createCartDto: CreateCartDto): Promise<Cart> {
-    const cart = new Cart();
+  async create(createCartDto: CreateCartDto): Promise<addToCart> {
+    const cart = new addToCart();
     cart.product_name = createCartDto.product_name;
     cart.no_of_products = createCartDto.no_of_products;
     return this.cartRepository.save(cart);
   }
 
-  async findAll(): Promise<Cart[]> {
+  async findAll(): Promise<addToCart[]> {
     return this.cartRepository.find();
   }
 
-  async findOne(id: number): Promise<Cart | undefined> {
+  async findOne(id: number): Promise<addToCart | undefined> {
     return this.cartRepository.findOne({ where: { id } });
   }
 
-  async update(id: number, updateCartDto: UpdateCartDto): Promise<Cart> {
+  async update(id: number, updateCartDto: UpdateCartDto): Promise<addToCart> {
     const cart = await this.cartRepository.findOne({ where: { id } });
     if (!cart) {
     }
