@@ -21,9 +21,4 @@ export class Registration {
   @Column()
   password: string;
 
-  @BeforeInsert()
-  async HashPassword() {
-    this.password = await bcrypt.hash(this.password, 10);
-  }
-
 }

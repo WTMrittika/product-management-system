@@ -7,9 +7,9 @@ import { UpdateRegistrationDto } from './dto/update-registration.dto';
 export class RegistrationController {
   constructor(private readonly registrationService: RegistrationService) {}
 
-  @Post('register')
-  register(@Body(ValidationPipe) createUserDto: CreateRegistrationDto) {
-    return this.registrationService.create(createUserDto);
+  @Post()
+  create(@Body(ValidationPipe) createegistrationDto: CreateRegistrationDto) {
+    return this.registrationService.create(createegistrationDto);
   }
 
   @Get()
@@ -17,9 +17,9 @@ export class RegistrationController {
     return this.registrationService.findAll();
   }
 
-  @Get('login/:Email')
-  findOne(@Param('Email') Email: string) {
-    return this.registrationService.findOne(Email);
+  @Get('login/:email')
+  findOne(@Param('email') email: string) {
+    return this.registrationService.findOne(email);
   }
   
   @Patch(':id')

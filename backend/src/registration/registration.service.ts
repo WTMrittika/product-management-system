@@ -12,11 +12,11 @@ export class RegistrationService {
     @InjectRepository(Registration) private readonly regRepo: Repository<Registration>,
   ) {}
 
-  async create(createRegDto: CreateRegistrationDto) {
-
-    const user = await this.regRepo.create(createRegDto);
-    return await this.regRepo.save(user);
+  async create(createRegistrationDto: CreateRegistrationDto): Promise<Registration> {
+    const reg = await this.regRepo.create({...createRegistrationDto,});
+    return await this.regRepo.save(reg);
   }
+
   findAll() {
     return `This action returns all registration`;
   }
